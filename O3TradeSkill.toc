@@ -1,0 +1,12 @@
+## Interface: 60000
+## DefaultState: Enabled
+## Title: |cFF007FFFO3|r Trade Skill
+## Author: Oz
+## Version: 0.1
+## Notes: O3 Trade Skill Window
+## RequiredDeps: O3
+
+TradeSkillItem.lua
+TradeSkillDetail.lua
+TradeSkillWindow.lua
+TradeSkill.lua

@@ -39,7 +39,8 @@ ns.TradeSkillWindow = O3.UI.ItemListWindow:extend({
 		self.handler:registerEvent('BAG_UPDATE', self)
 		self.handler:registerEvent('TRADE_SKILL_UPDATE', self)
 		self.handler:registerEvent('TRADE_SKILL_FILTER_UPDATE', self)
-		self.handler:registerEvent('TRADE_SKILL_CLOSE', self)	
+		self.handler:registerEvent('TRADE_SKILL_CLOSE', self)
+		self.handler:registerEvent('GARRISON_TRADESKILL_NPC_CLOSED', self)	
 		self:TRADE_SKILL_UPDATE()
 		-- self:setInvSlotFilters()
 		-- self:setSubClassFilters()
@@ -47,6 +48,9 @@ ns.TradeSkillWindow = O3.UI.ItemListWindow:extend({
 	BAG_UPDATE = function (self)
 		self:scrollTo()
 		--self:getDetail()
+	end,
+	GARRISON_TRADESKILL_NPC_CLOSED = function (self)
+		self.frame:Hide()
 	end,
 	TRADE_SKILL_CLOSE = function (self)
 		self.frame:Hide()
@@ -243,7 +247,11 @@ ns.TradeSkillWindow = O3.UI.ItemListWindow:extend({
 				self:TRADE_SKILL_UPDATE()
 			end,
 			postInit = function (editBox)
-				editBox:point('LEFT', lastButton.frame, 'RIGHT', 10, 0)
+				if (lastButton) then
+					editBox:point('LEFT', lastButton.frame, 'RIGHT', 10, 0)
+				else
+					editBox:point('LEFT', toolbar.frame, 'LEFT', 2, 0)
+				end
 			end,
 		})
 	end,
